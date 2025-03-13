@@ -139,7 +139,7 @@
     .asset-item {
       text-align: center;
     }
-    /* Asset Image Frame - auto-adjusts to image’s natural aspect ratio */
+    /* Asset Image Frame */
     .asset-image {
       display: inline-block;
       border: 2px solid #00aaff;
@@ -323,7 +323,7 @@
           <p>Price: $16</p>
           <a href="https://paypal.me/1ypii1" target="_blank" class="buy-button">Buy Now</a>
         </div>
-        <!-- Additional Assets 11 - 36 -->
+        <!-- Asset Items 11 to 36 -->
         <!-- Asset Item 11 -->
         <div class="asset-item">
           <div class="asset-image">
@@ -646,6 +646,7 @@
           var items = document.querySelectorAll(".asset-item");
           items.forEach(function (item) {
             var itemName = item.querySelector("h4").innerText.toLowerCase();
+            // Display items if name starts with search term or if search term is empty
             if (searchTerm === "" || itemName.startsWith(searchTerm)) {
               item.style.display = "";
             } else {
