@@ -113,7 +113,6 @@
     .active {
       display: block;
     }
-
     /* Search & Slider Container */
     .search-slider-container {
       display: flex;
@@ -130,7 +129,6 @@
       width: 160px;
       margin-left: 5px;
     }
-
     /* Asset Grid Styles in Home Tab */
     .asset-grid {
       display: grid;
@@ -141,7 +139,7 @@
     .asset-item {
       text-align: center;
     }
-    /* Asset Image Frame - auto-adjusts to image’s natural aspect ratio */
+    /* Asset Image Frame */
     .asset-image {
       display: inline-block;
       border: 2px solid #00aaff;
@@ -223,11 +221,7 @@
         <!-- Search Bar -->
         <div class="search-container">
           <label for="assetSearchInput">Search:</label>
-          <input
-            type="text"
-            id="assetSearchInput"
-            placeholder="Type to search..."
-          />
+          <input type="text" id="assetSearchInput" placeholder="Type to search..." />
         </div>
         <!-- Slider Control -->
         <div class="slider-container">
@@ -239,20 +233,25 @@
 
       <!-- Asset Grid -->
       <div class="asset-grid">
-        <!-- Example Asset Item -->
+        <!-- Example Asset Item 1 -->
         <div class="asset-item">
           <div class="asset-image">
-            <img
-              src="https://media.discordapp.net/attachments/1349258278517080145/1349374654904533126/image.png"
-              alt="Asset 1"
-            />
+            <img src="https://media.discordapp.net/attachments/1349258278517080145/1349374654904533126/image.png" alt="Asset 1" />
           </div>
           <h4>Asset 1</h4>
           <p>Price: $10</p>
           <a href="https://paypal.me/1ypii1" target="_blank" class="buy-button">Buy Now</a>
         </div>
-
-        <!-- Add more asset items here or keep the existing items from your code -->
+        <!-- Asset Item 2 -->
+        <div class="asset-item">
+          <div class="asset-image">
+            <img src="https://media.discordapp.net/attachments/1349258278517080145/1349374687834275950/image.png" alt="Asset 2" />
+          </div>
+          <h4>Asset 2</h4>
+          <p>Price: $12</p>
+          <a href="https://paypal.me/1ypii1" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <!-- Additional asset items here (3 to 36) -->
         <!-- ... -->
       </div>
     </div>
@@ -294,12 +293,7 @@
       <p>
         Connect with me on Discord by clicking the button below:
       </p>
-      <a
-        href="https://discord.com/users/1080193220992057487"
-        target="_blank"
-        class="discord-button"
-        >Add 1yyz</a
-      >
+      <a href="https://discord.com/users/1080193220992057487" target="_blank" class="discord-button">Add 1yyz</a>
     </div>
   </div>
 
@@ -325,11 +319,11 @@
       evt.currentTarget.style.backgroundColor = "#00aaff";
       evt.currentTarget.style.color = "#0a0a1a";
     }
-
+    
     document.addEventListener("DOMContentLoaded", function () {
       // Open Home tab by default
       document.querySelector(".tablink").click();
-
+      
       // Slider to adjust asset grid cell size (scaling upward only)
       var slider = document.getElementById("assetSizeSlider");
       var displayValue = document.getElementById("assetSizeValue");
@@ -338,16 +332,16 @@
         displayValue.textContent = scale;
         document.documentElement.style.setProperty("--asset-scale", scale);
       });
-
-      // Search functionality
+      
+      // Search functionality: Show asset if its name starts with the search term
       var searchInput = document.getElementById("assetSearchInput");
       searchInput.addEventListener("input", function () {
         var searchTerm = searchInput.value.toLowerCase();
         var items = document.querySelectorAll(".asset-item");
         items.forEach(function (item) {
           var itemName = item.querySelector("h4").innerText.toLowerCase();
-          // Show item if it includes the search term, hide otherwise
-          if (itemName.includes(searchTerm)) {
+          // Only display items whose names start with the search term
+          if (searchTerm === "" || itemName.startsWith(searchTerm)) {
             item.style.display = "";
           } else {
             item.style.display = "none";
